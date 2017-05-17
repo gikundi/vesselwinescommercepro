@@ -1,0 +1,240 @@
+ <main ng-controller="cartController as controller">
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+
+           <div class="alert alert-dismissible alert-danger" ng-show="disabledError">
+                            <center>
+                                <strong>Your account is not currently active. Please check your email and click the activation link.</strong>
+                            </center>
+                        </div>
+
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Cart Items</h4>
+                </div>
+                <div class="modal-body">
+
+                <h3 ng-show="!cartdetailsitems">There are no Items in the Cart</h3>
+                 
+    <div class="wine-stock col-lg-6" style="margin-top: 40px;"   ng-repeat="itemincart in cartdetailsitems">
+                        <div class="col-lg-5">
+                            <span class="stock-medal-count pull-left">2</span><br>
+                            <img class="wine-medal-image" src="images/medal-icon.png" alt=""/>
+                              <img class="wine-stock-image" ng-src="{{itemincart.image}}" alt=""/>
+                        </div>
+                        <div class="quant-selection col-lg-7">
+                            <div class="wine-info">
+                                <span class="wine-stock-quant">20{{itemincart.year}}</span><br>
+                                <span class="wine-stock-name">{{itemincart.wine_brand}}</span>
+                            </div>
+                            <div>
+                                <span class="wine-bottle col-lg-6">
+                                    <span style="font-size: 18px;color: #aaa9a5;">Bottle</span><br>
+                                    <span style="font-size: 16px;font-weight: bold;color: #9c9c9c;">${{itemincart.bottle_amount}}</span><br>
+                                    <input class="select-qty" type="number" name="qty" ng-model="itemincart.bottle_qnty" min="0" ><span style="font-size: 18px;color: #aaa9a5;"> QTY</span>
+                                </span> 
+                                <span class="wine-case col-lg-6">
+                                    <span style="font-size: 18px;color: #aaa9a5;">Case</span><br>
+                                    <span style="font-size: 16px;font-weight: bold;color: #9c9c9c;">${{itemincart.case_amount}}</span><br>
+                                    <input class="select-qty" type="number" name="qty" ng-model="itemincart.case_qnty"  min="0" ><span style="font-size: 18px;color: #aaa9a5;"> QTY</span>
+                                </span> 
+                            </div>&nbsp;
+                            <div>
+                             <span class="add-toCart-btn col-lg-6" ng-click="deleteItem(itemincart)">Remove</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                  <span ng-show="cartdetailsitems"><button type="button" class="btn btn-default" ng-click="addDetails()">Save</button></span>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+<!--        ===TOP SECTION===    -->
+            <div class="row top-section">
+                <div class="logo col-lg-3">
+                    <img src="images/PastedGraphic-1_result.jpg" width="100%" />
+                    <hr class="dark-line long-line">
+                </div>
+                <div class="top-nav col-lg-9">
+                    <div class="col-lg-3 nav-tab">
+                        <h4 class="dark-heading-text">The People</h4>
+                        <hr class="dark-line">
+                        <span>
+                            Quality not quantity, an adage we've lived by for 30 years now
+                        </span>
+                    </div>
+                    <div class="col-lg-3 nav-tab">
+                        <h4 class="dark-heading-text">The Shop</h4>
+                        <hr class="dark-line">
+                        <span>
+                            Buy our award-winning wines online, read the tasting and technical notes
+                        </span>
+                    </div>
+                    <div class="col-lg-3 nav-tab">
+                        <h4 class="dark-heading-text">The News</h4>
+                        <hr class="dark-line">
+                        <span>
+                           Latest happenings from the winery and our wine club
+
+                        </span>
+                    </div>
+                    <div class="col-lg-3 nav-tab">
+                        <h4 class="dark-heading-text">Visit Us</h4>
+                        <hr class="dark-line">
+                        <span>
+                            Our award winning native gardens, artists residence and cellar door
+                        </span>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12"><hr class="dark-line-thick"></div>                        
+                        <span class="tiny-text"><img src="images/american-flag.gif" alt=""/>  US Customers please click here to order wine online.</span>                        
+                    </div>
+                </div>                
+            </div>
+<!--        ===TITLE SECTION===     -->
+            <div class="title-section">
+                <div class="col-lg-12">
+                    <h4 class="dark-heading-text pull-right">The Club</h4><br>
+                    <hr class="dark-title-line-short pull-right">
+                </div>
+            </div>
+<!--        ===INFO SECTION===     -->
+            <div class="info-section">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#filterBy" data-toggle="tab" aria-expanded="false">Show me</a></li>
+                            <li class=""><a href="#ShowAll" data-toggle="tab" aria-expanded="true">Showing all</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in filter-tab-body" id="filterBy">                            
+                                <span class="wine-type-filter">White</span>
+                                <span class="wine-type-filter">Red</span>
+                                <span class="wine-type-filter">Sparkling</span>
+                                <p>&nbsp;</p>
+                                <span style=" font-size: 12px;">Order by</span>
+                                <span class="wine-type-filter">Price</span>
+                                <span class="wine-type-filter">Vintage</span>
+                            </div>
+                            <div class="tab-pane fade filter-tab-body" id="ShowAll">
+                              <p>Showing all products.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row delivery-info-box">
+                            <div class="del-info-text vertical-line-right col-lg-3">                                
+                                <span style="top: 55px;position: relative;">
+                                    Delivery Info
+                                </span>                            
+                            </div>
+                            <div class="del-info-text col-lg-1">
+                                <span  class="total-bottles">{{getTotalBottles()}}</span><br>
+                                <span class="total-bottles-word">Bottles</span>
+                            </div>  
+                            <div class="col-lg-8  checkout-info-section vertical-line-left"> 
+                                <div class="col-lg-7">
+                                    <span  ng-repeat="item in cartdetailsitems" class="cart-prod-info">
+                                    {{item.bottle_qnty}} X 20{{item.year}} {{item.wine_brand}} </span>
+                                    <hr class="white-long-underline">                                    
+                                    <span class="cart-prod-info">Total </span><span style="color: red;">${{getTotal()}} </span>
+                                    <hr class="white-long-underline">                                    
+                                </div>
+                                <div class="checkout-btns col-lg-5">
+                                    <span class="light-btn" ng-click="clearCart()">Empty Cart</span><br>
+
+                                     <span class="dark-btn" data-toggle="modal" data-target="#myModal">Check Out</span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--        ===STOCK SECTION===     -->
+            <div class="stock-section">
+                <div class="row">
+                    <div class="wine-stock col-lg-4" ng-repeat="shoppinglistitem in shoppinglist">
+
+                        <div class="col-lg-5">
+                            <span class="stock-medal-count pull-left">2</span><br>
+                            <img class="wine-medal-image" src="images/medal-icon.png" alt=""/>
+                              <img class="wine-stock-image" ng-src="{{shoppinglistitem.image}}" alt=""/>
+                        </div>
+                        <div class="quant-selection col-lg-7">
+                            <div class="wine-info">
+                                <span class="wine-stock-quant">20{{shoppinglistitem.year}}</span><br>
+                                <span class="wine-stock-name">{{shoppinglistitem.wine_brand}}</span>
+                            </div>
+                            <div>
+                                <span class="wine-bottle col-lg-6">
+                                    <span style="font-size: 18px;color: #aaa9a5;">Bottle</span><br>
+                                    <span style="font-size: 16px;font-weight: bold;color: #9c9c9c;">${{shoppinglistitem.bottle_amount}}</span><br>
+                                    <input class="select-qty" type="number" name="qty" ng-model="bottleno" min="0" ><span style="font-size: 18px;color: #aaa9a5;"> QTY</span>
+                                </span> 
+                                <span class="wine-case col-lg-6">
+                                    <span style="font-size: 18px;color: #aaa9a5;">Case</span><br>
+                                    <span style="font-size: 16px;font-weight: bold;color: #9c9c9c;">${{shoppinglistitem.case_amount}}</span><br>
+                                    <input class="select-qty" type="number" name="qty" ng-model="caseno"  min="0" ><span style="font-size: 18px;color: #aaa9a5;"> QTY</span>
+                                </span> 
+                            </div>&nbsp;
+                            <div>
+                                <span  class="details-btn col-lg-6">Details</span>
+                                 <span class="add-toCart-btn col-lg-6" ng-click="addItem(shoppinglistitem,bottleno,caseno)">Add to Cart</span>
+                            </div>
+
+                        </div>
+
+                       <hr class="dotted-line">
+                    </div>
+
+                   
+                 </div>    
+
+
+<!--        ===TERMS SECTION===     -->
+            <div class="terms-section">
+                <div class="row">
+                    <div class="terms-title col-lg-3">
+                        Wine Orders
+                    </div>
+                    <div class="terms-title col-lg-3">
+                        Delivery
+                    </div>
+                </div>
+                <hr class="light-line-underline">
+                <div class="row footer-text">
+                    <div class=" col-lg-3">
+                        <p>ALl prices are in New Zealand Dollars and include GST</p>
+                        <p>You must be 18 years or older to order.</p>
+                        <p>We reserve the right to restrict sales 
+                        should orders exceed supply.</p>
+
+                        <p>We aim to please. If you're not 100%
+                        happy,please return your purchase for a 
+                        complete refund.</p>
+                    </div>
+                    <div class=" col-lg-3">
+                       <p> Delivery is available within New Zealand
+                        only and may take up to two weeks.</p>
+
+                        <p>For international enquiries please refer to
+                        our local agents or search for retailers on
+                        Wine Searcher.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+ </main>

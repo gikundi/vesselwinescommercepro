@@ -1,0 +1,306 @@
+
+body {
+    position: absolute;
+    top: 50px;
+    background-color: #F4F3EF;
+/*    border: solid 1px;*/
+}
+
+.content {
+    padding-left: 190px;
+    padding-right: 90px;
+    padding-bottom: 100px;
+}
+
+.dark-line {
+    border-top: 1px solid #646361;
+}
+
+.light-line {
+    border-top: 1px solid #cccccc;
+}
+
+.light-line-underline {
+    border-top: 1px solid #cccccc;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.dark-title-line-short {
+    border-top: 1px solid #646361;
+    width: 110px;
+    position: relative;
+    left: 110px;
+}
+
+.tiny-text {
+    font-size: 12px;
+    position: relative;
+    bottom: 20px;
+    left: 18px;
+    color: #646361;
+    cursor: pointer;
+}
+
+.long-line {
+    position: relative;
+    width: 250px;
+}
+
+.dark-line-thick {
+    border-top: 10px solid #646361;
+}
+
+.white-long-underline {
+  border-top: 1px solid #ffffff;
+  margin: 0px;
+  width: 190px;
+}
+
+.dark-heading-text {
+    color: #646361;
+}
+
+.dotted-line {
+   border:none;
+   border-top:1px dotted #f00;
+   color:#fff;
+   background-color:#fff;
+   height:1px;
+}
+
+.nav-tab {
+    cursor: pointer;
+    font-size: 12px;
+    color: #646361;
+}
+
+.nav-tab:hover {
+     color: #cccccc;
+}
+
+.nav-tab:hover hr.dark-line  {
+    border-top: 1px solid #cccccc;
+}
+
+.nav-tab:hover h4.dark-heading-text  {
+    color: #cccccc;
+}
+
+.filter-tab-body {
+    background-color: #e8e9e4;
+    padding: 15px;
+    border-radius: 3px 3px 10px 10px;
+}
+
+.nav-tabs>li>a {
+    border: none !important;
+    color: #646361 !important;
+}
+
+.nav-tabs {
+     border-bottom: none !important; 
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #646361 !important;
+    background-color: #e8e9e4 !important;
+    border: 1px solid #dddddd;
+    border-bottom-color: transparent;
+    cursor: default;
+}
+
+.wine-type-filter {
+    font-size: 12px;
+    background-color: #d8d7d3;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.delivery-info-box {
+    top: 40px;
+    position: relative;
+    background-color: #e8e9e4;
+    padding: 15px 2px 0px 2px;
+    border-radius: 10px; 
+    min-height: 150px;
+}
+
+.del-info-text {
+    text-align: center;
+    position: relative;
+    color: #646361;
+}
+
+.total-bottles {
+    font-size: 40px;
+    position: relative;
+    top: 20px;
+    left: 35px;
+}
+.total-bottles-word {
+    font-size: 20px;
+    top: 10px;
+    position: relative;
+    left: 30px;
+}
+
+.cart-prod-info {
+    font-size: 12px;
+    color: #646361;
+}
+
+.vertical-line-right{
+    border-right: solid 1px #ffffff;
+    min-height: 130px;
+    position: relative;
+    bottom: 15px;
+}
+
+.vertical-line-left{
+    border-left: solid 1px #ffffff;
+    min-height: 130px;
+    position: relative;
+    bottom: 15px;
+}
+
+.checkout-info-section {
+    line-height: 3;
+    padding: 15px 0px 0px 0px;
+    position: relative;
+    left: 100px;
+    width: 270px;
+}
+
+.checkout-btns {
+    position: relative;
+    top: 10px;
+    padding: 0px 0px 0px 10px;
+    left: 45px;
+}
+
+.light-btn {
+   background-color: #c8c7c3; 
+   font-size: 12px;
+   color: #ffffff;
+   border-radius: 5px;
+   cursor: pointer;
+   padding: 10px 10px;
+}
+
+.dark-btn {
+   background-color: #222222; 
+   font-size: 12px;
+   color: #ffffff;
+   border-radius: 5px;
+   cursor: pointer;
+   padding: 10px 14px;
+}
+
+.stock-section {
+    position: relative;
+    top: 80px;
+}
+
+.wine-stock {
+/*    border: solid 1px;*/
+    padding: 0px; 
+    overflow: hidden;
+    margin-bottom: 50px;
+    height: 281px;
+}
+
+.stock-medal-count {
+    color: #C2AA6B;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+img.wine-medal-image {
+    float: left;
+    width: 20%;
+}
+
+img.wine-stock-image {
+    float: right;
+    width: 58.66px;
+    height: 257.23px;
+    bottom: 15px;
+    position: relative;
+}
+
+.wine-info {
+    height: 155px;
+    overflow: hidden;
+}
+
+.wine-stock-quant {
+    color: #a4a3a1;
+    font-size: 50px;
+}
+
+.wine-stock-name {
+    color: #a4a3a1;
+    font-size: 20px;
+}
+
+.quant-selection {
+    padding: 0px 0px 0px 5px;
+}
+
+.wine-bottle {
+    float: left;
+    padding: 0px;
+    border-right: solid 1px #cccccc;
+}
+
+.wine-case {
+    float: right;
+    padding: 0px 0px 0px 10px;    
+}
+
+input.select-qty {
+    width: 26px;
+}
+
+.details-btn {
+    background-color: #e3e4df;
+    font-size: 12px;
+    font-weight: bold;
+    color: #868685;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 0px;
+    text-align: center;
+    position: relative;
+    left: -5px;
+}
+
+.add-toCart-btn {
+     background-color: #ffce0f;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 0px;
+    text-align: center;
+    position: relative;
+}
+
+.terms-section {
+    position: relative;
+    top: 80px;
+    color: #646361;
+}
+
+.terms-title {
+    font-size: 22px;
+}
+.footer-text {
+    font-size: small;
+   
+}

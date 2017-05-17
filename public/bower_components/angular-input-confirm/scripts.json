@@ -1,0 +1,8 @@
+{
+  "vendor": [
+
+  ],
+  "application": [
+    "./app/js/inputConfirm.js"
+  ]
+}
