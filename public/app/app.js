@@ -66,6 +66,9 @@ app.config(function($stateProvider, $urlRouterProvider,localStorageServiceProvid
             url: "/home",
             cache: false,
             templateUrl: "app/cart/cart.html"
-    })
+    });
+
+    $urlRouterProvider.otherwise("/home");
+    
     
  });      
