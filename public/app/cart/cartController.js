@@ -3,6 +3,7 @@ app.controller('cartController', function($scope, $http, API_URL,CartDetails,loc
 // Initialize Cart 
 $scope.cart = [];
 
+
 //Set Cart Items after page is reloaded
 $scope.cartdetailsitems = localStorageService.get('items');
 
@@ -13,9 +14,22 @@ $http.get(API_URL)
                
             });
 
+//Filter Shopping List Items
+$scope.search=function(searchparam){
+
+        $scope.searchQuery = angular.copy(searchparam);
+        $scope.shoppinglistToFilter=$scope.shoppinglist;
+        $scope.searchReasult=true;
+
+ }
 
 // Add Item to Cart
   $scope.addItem = function(item,bottle_qnty,case_qnty) {
+
+
+    $scope.bottle_qnty = bottle_qnty;
+    $scope.year = item.year;
+    $scope.brand = item.wine_brand;
 
     var match = getMatchedCartItem(item);
     if (match) {
@@ -63,11 +77,9 @@ $http.get(API_URL)
   }
 
 // Remove Item from Cart
-
-
  $scope.deleteItem = function(item) {
 
-    var cart = localStorageService.get('items');
+    var cart = $scope.cartdetailsitems;
     var match = getMatchedCartItem(item);
     if (match.count > 1) {
       match.count -= 1;
@@ -77,9 +89,11 @@ $http.get(API_URL)
 
     localStorageService.set('items',cart);
 
-    alert('Item removed from cart suceesfully');
-  }
+    $scope.getTotalBottles();
 
+    alert('Item removed from cart suceesfully');
+
+  }
 
 // Get Total No of Bottles added 
   $scope.getTotalBottles = function(){
@@ -124,7 +138,7 @@ $http.get(API_URL)
         
        // console.log("Bottle Total",total);
     }
-    return totalCart;
+    return Math.round(totalCart, 2);
 }
 
 // Save Cart Details to the database
@@ -148,6 +162,7 @@ $http.get(API_URL)
 
   $scope.clearCart();
 
+
  }
 
 // Clear Cart 
@@ -156,7 +171,10 @@ $scope.clearCart = function(item) {
     $scope.cart = [];
     $scope.items =[];
     $scope.cartdetailsitems = [];
-    $scope.reset();
+    $scope.bottle_qnty = '';
+    $scope.year = '';
+    $scope.brand = '';
+    $scope.getTotalBottles();
     localStorageService.remove('items');
     localStorageService.remove('total');
     localStorageService.remove('totalcart');
@@ -164,31 +182,6 @@ $scope.clearCart = function(item) {
 
   }
 
-//Reset Function
-  $scope.reset = function () {
-
-    $scope.getTotalBottles = function(){
-
-
-    var total = CartDetails.getTotalBt();
-
-    if(!total){
-
-     var total = 0;
-    }
-
-    for(var i = 0; i < $scope.cart.length; i++){
-        var product = $scope.cart[i];
-      
-        total += (product.bottle_qnty);
-
-    }
-    
-    return total;
-}
-    return
-
-  }
 
 $scope.saveTotalBottlesLocally = function ($currentno) {
 
@@ -217,9 +210,8 @@ $scope.saveCartItemsLocally = function () {
 
   function getMatchedCartItem(item) {
 
-    //$scope.localcart = [];
-   // $scope.localcart = localStorageService.get('items');
-    return $scope.cart.find(function(itm) {
+      var cart = $scope.cart;
+      return $scope.cart.find(function(itm) {
       return itm.id === item.id
     });
 

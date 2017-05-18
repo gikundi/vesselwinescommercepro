@@ -10,6 +10,7 @@ app.service('CartDetails', function (localStorageService) {
     var Qnty = [];
     var TotalBt = localStorageService.get('total');
     var TotalCart = localStorageService.get('totalcart');
+    
 
     return {
        getCart: function() {
@@ -58,9 +59,9 @@ app.config(function($stateProvider, $urlRouterProvider,localStorageServiceProvid
     $stateProvider
 
     .state('default', {
-	     controller: 'cartController',
-	     templateUrl: 'app/cart/cart.html',
-	     url:'/home'
+         controller: 'cartController',
+         templateUrl: 'app/cart/cart.html',
+         url:'/home'
     })
       .state("home", {
             url: "/home",
@@ -69,6 +70,7 @@ app.config(function($stateProvider, $urlRouterProvider,localStorageServiceProvid
     });
 
     $urlRouterProvider.otherwise("/home");
-    
+    //$locationProvider.html5Mode(true);
+    //$httpProvider.interceptors.push('HttpInterceptor');
     
  });      

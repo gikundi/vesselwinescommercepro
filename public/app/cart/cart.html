@@ -28,7 +28,7 @@
                               <img class="wine-stock-image" ng-src="{{itemincart.image}}" alt=""/>
                         </div>
                         <div class="quant-selection col-lg-7">
-                            <div class="wine-info">
+                            <div class="wine-info" >
                                 <span class="wine-stock-quant">20{{itemincart.year}}</span><br>
                                 <span class="wine-stock-name">{{itemincart.wine_brand}}</span>
                             </div>
@@ -120,13 +120,13 @@
                         </ul>
                         <div id="myTabContent" class="tab-content">
                             <div class="tab-pane fade active in filter-tab-body" id="filterBy">                            
-                                <span class="wine-type-filter">White</span>
-                                <span class="wine-type-filter">Red</span>
-                                <span class="wine-type-filter">Sparkling</span>
+                                <span class="wine-type-filter" ng-click="search('Breidcker')">White</span>
+                                <span class="wine-type-filter" ng-click="search('Pinot Gris')">Red</span>
+                                <span class="wine-type-filter" ng-click="search('Riesling')">Sparkling</span>
                                 <p>&nbsp;</p>
                                 <span style=" font-size: 12px;">Order by</span>
-                                <span class="wine-type-filter">Price</span>
-                                <span class="wine-type-filter">Vintage</span>
+                                <span class="wine-type-filter" ng-click="search('Reserve')">Price</span>
+                                <span class="wine-type-filter" ng-click="search('Vintage')">Vintage</span>
                             </div>
                             <div class="tab-pane fade filter-tab-body" id="ShowAll">
                               <p>Showing all products.</p>
@@ -146,8 +146,10 @@
                             </div>  
                             <div class="col-lg-8  checkout-info-section vertical-line-left"> 
                                 <div class="col-lg-7">
-                                    <span  ng-repeat="item in cartdetailsitems" class="cart-prod-info">
-                                    {{item.bottle_qnty}} X 20{{item.year}} {{item.wine_brand}} </span>
+                                   <div>
+                                    <span  class="cart-prod-info" style="display: inline-block;">
+                                    {{bottle_qnty}}<span ng-show="bottle_qnty"> X 20</span>{{year}} {{brand}}
+                                   </span></div>
                                     <hr class="white-long-underline">                                    
                                     <span class="cart-prod-info">Total </span><span style="color: red;">${{getTotal()}} </span>
                                     <hr class="white-long-underline">                                    
@@ -165,7 +167,9 @@
 <!--        ===STOCK SECTION===     -->
             <div class="stock-section">
                 <div class="row">
-                    <div class="wine-stock col-lg-4" ng-repeat="shoppinglistitem in shoppinglist">
+
+               <!--  ng-repeat="item in myArrayOfValues | filter:search:true" -->
+                    <div class="wine-stock col-lg-4" ng-repeat="shoppinglistitem in shoppinglist |  filter: searchQuery |orderBy:type">
 
                         <div class="col-lg-5">
                             <span class="stock-medal-count pull-left">2</span><br>

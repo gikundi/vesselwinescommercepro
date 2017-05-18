@@ -6,69 +6,60 @@ use Illuminate\Http\Request;
 use App\Cart;
 use App\OrderDetails;
 use File;
+use Illuminate\Support\Facades\Input;
 use App\Order;
 
 class CartController extends Controller
 
-
 {
-	    public function index () {
+    //Function to Get all shopping List items
 
-      
-       $cart_details = Cart::all();
-
-
+       public function index () {
+        
+        $cart_details = Cart::all();
         $error["status"] = 200;
         $error["message"] = 'success';
-
-         $arr = array('data' => $cart_details, 'error' => $error);
-
+        $arr = array('data' => $cart_details, 'error' => $error);
         echo json_encode($cart_details);
 
    }
 
 
-	public function show ($id) {
+   //Function to Get a pecific shopping List item
 
-      
+    public function show ($id) {
+
        $cart_details = Cart::where('id',$id)->get();
+       $error["status"] = 200;
+       $error["message"] = 'success';
+       $arr = array('data' => $cart_details, 'error' => $error);
+       echo json_encode($cart_details);
 
-        $error["status"] = 200;
-        $error["message"] = 'success';
+  }
 
-         $arr = array('data' => $cart_details, 'error' => $error);
-
-        echo json_encode($cart_details);
-
-	}
-
+    //Function to save cart items
     
     public function store (Request $request) {
     
        $cartdetails = new OrderDetails;
-
        $serializedArr = serialize($request->all());
-
        $cartdetails->items = $serializedArr;
-
        $cartdetails->save();
-
        return 'Cart Details successfully created with id ' .$cartdetails->id;
 
-
     }
+    
+    //Function to retrieveview  shopping List item saved in the database by id
 
-    public function cartDetails () {
+    public function cartDetails (Request $request) {
 
-      $stuffs = OrderDetails::all();
-
-         foreach ($stuffs as $stuff) {
-
-         $cartdetails = unserialize($stuff->items);
- 
-      }
-     
-         $arr = array('data' => $cartdetails);
+      $id = $request->get('id'); 
+    
+      $stuffs = OrderDetails::where('id',$id)->get();
+      foreach ($stuffs as $stuff) {
+        $cartdetails = unserialize($stuff->items);
+       }
+         $arr = array('cart items' => $cartdetails);
          echo json_encode($arr);
 
     }
