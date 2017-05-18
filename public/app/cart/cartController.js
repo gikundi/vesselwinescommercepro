@@ -17,6 +17,8 @@ $http.get(API_URL)
 //Filter Shopping List Items
 $scope.search=function(searchparam){
 
+        console.log("Clicked");
+
         $scope.searchQuery = angular.copy(searchparam);
         $scope.shoppinglistToFilter=$scope.shoppinglist;
         $scope.searchReasult=true;
